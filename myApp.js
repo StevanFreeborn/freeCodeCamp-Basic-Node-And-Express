@@ -64,9 +64,14 @@ const getName = (req, res) => {
 }
 
 const postName = (res, req) => {
-  res.send('Hello World');
+  const data = {
+    name: `${req.body.first} ${req.body.last}`
+  };
+  res.send(data);
 }
 
-app.route('/name').get(getName).post(postName);
+app.route('/name')
+.get(getName)
+.post(postName);
 
 module.exports = app;
