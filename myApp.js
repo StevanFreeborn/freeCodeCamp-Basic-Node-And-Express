@@ -47,4 +47,11 @@ app.get(
   }
 );
 
+app.get("/:word/echo", (req, res, next) => {
+  const data = {
+    echo: req.params.word
+  };
+  res.send(data);
+});
+
 module.exports = app;
