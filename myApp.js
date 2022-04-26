@@ -34,12 +34,10 @@ app.get('/json', (req, res) => {
   res.json(data)
 });
 
-app.get(
-  "/now",
-  (req, res, next) => {
-    req.time = new Date().toString();
-    next();
-  },
+app.get("/now", (req, res, next) => {
+  req.time = new Date().toString();
+  next();
+},
   (req, res) => {
     res.send({
       time: req.time
@@ -47,11 +45,24 @@ app.get(
   }
 );
 
-app.get("/:word/echo", (req, res, next) => {
+app.get("/:word/echo", (req, res) => {
   const data = {
     echo: req.params.word
   };
   res.send(data);
 });
+
+const getName = (req, res) => {
+  const data = {
+    name: `${req.query.first} ${req.query.last}`
+  };
+  res.send(data);
+}
+
+const postName = (res, req) => {
+  res.send('Hello World');
+}
+
+app.route('/name').get(getName).post(postName);
 
 module.exports = app;
