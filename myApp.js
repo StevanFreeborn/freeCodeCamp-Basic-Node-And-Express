@@ -63,7 +63,7 @@ const getName = (req, res) => {
   res.send(data);
 }
 
-const postName = (res, req) => {
+const postName = (req, res) => {
   const data = {
     name: `${req.body.first} ${req.body.last}`
   };
