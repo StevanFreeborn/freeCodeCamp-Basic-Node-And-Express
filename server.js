@@ -1,6 +1,7 @@
 var bGround = require('fcc-express-bground');
 var myApp = require('./myApp');
 var express = require('express');
+var cfg = require('dotenv').config();
 var app = express();
 
 if (!process.env.DISABLE_XORIGIN) {
@@ -31,6 +32,12 @@ app.get('/json', (req, res) => {
   const data = {
     message: "Hello json"
   }
+
+  if(process.env.MESSAGE_STYLE != 'uppercase') {
+    return res.json(data);
+  }
+
+  data.message = data.message.toUpperCase();
 
   res.json(data)
 })
